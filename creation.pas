@@ -64,8 +64,6 @@ begin
 	for j:=i-1 downto 1 do b[a[j].c]:=b[a[j].c] - overlap(j,i);
 end;
 
-//Them phan paint ben ngoai gioi han?
-
 function dt(i,j:integer):integer;
 var xx1,xx2,yy1,yy2:integer;
 begin
