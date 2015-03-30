@@ -1,7 +1,7 @@
 const fi = 'xedien.inp';
 	  fo = 'xedien.out';
 	  maxn = 1000;
-	  vc = maxint;
+	  vc = (maxlongint div 2) - 1;
 var a:array[1..maxn,1..maxn] of longint;
 	n,m,s,k:longint;
 
