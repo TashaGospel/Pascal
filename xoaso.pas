@@ -13,11 +13,11 @@ begin
 	close(f);
 end;
 
-function maxpos(i:longint):longint;
+function minpos(i:longint):longint;
 var j,res:longint;
 begin
 	res:=i;
-	for j:=i to i+k do if a[res] < a[i] then res:=i;
+	for j:=i to i+k do if a[res] > a[j] then res:=j;
 	exit(res);
 end;
 
@@ -56,7 +56,7 @@ end;}
 	{maxpos:=1;
 	maxpos2:=0;
 	maxpos3:=0;
-	for i:=1 to k+1 do if a[i] > a[maxpos] then 
+	for i:=1 to k+1 do if a[i] > a[maxpos] then
 	begin
 		maxpos3:=maxpos2;
 		maxpos2:=maxpos;
@@ -71,10 +71,10 @@ end;}
 		if a[k+1] > a[maxpos] then
 		begin
 			maxpos2:=maxpos;}
-	while length(s) < n-k do
+	n:=length(a);
+	while length(a) > n-k do
 	begin
-		mp:=maxpos(1);
-		s:=s+a[mp];
+		mp:=minpos(1);
 		delete(a,mp,1);
 	end;
 end;
@@ -84,7 +84,7 @@ var f:text;
 begin
 	assign(f,fo);
 	rewrite(f);
-	write(f,s);
+	write(f,a);
 	close(f);
 end;
 
