@@ -1,6 +1,6 @@
 const vc=maxint;
-	  fi='duongdi.inp';
-	  fo='duongdi.out';
+	  fi='floyd.inp';
+	  fo='floyd.out';
 	  maxn=1000;
 var T,D:array[1..maxn,1..maxn] of integer;
 	m,n,u,v:longint;

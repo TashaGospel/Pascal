@@ -1,5 +1,5 @@
-const	fi = 'dothi.inp';
-		fo = 'dothi.out';
+const	fi = 'bfs.inp';
+		fo = 'bfs.out';
 		maxn = 1000;
 var		g:array[1..maxn,1..maxn] of integer;
 		c:array[1..maxn] of boolean;
