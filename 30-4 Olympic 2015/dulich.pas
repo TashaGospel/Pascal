@@ -57,7 +57,7 @@ begin
 	writeln(f,a[u,v]);
 	st:=trace(u,v);
 	while pos('->->',st) > 0 do delete(st,pos('->->',st),2);
-	writeln(f,u,st,v);
+	write(f,u,st,v);
 	close(f);
 end;
 
