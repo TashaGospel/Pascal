@@ -82,4 +82,3 @@ begin
 	main;
 	output;
 end.
-
