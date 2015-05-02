@@ -17,8 +17,8 @@ begin
 	count:=0;
 end;
 
-//Should have just used binary string instead of boolean
-//Much easier to imagine
+//Should have used binary string instead of boolean
+//Much easier to visualize
 
 procedure main(i:longint);
 var tmp:string;

@@ -1,8 +1,7 @@
 const fi = 'xoaso.inp';
 	  fo = 'xoaso.out';
-var a,s:ansistring;
-	amax,amax2:char;
-	k,n:longint;
+var a:string;
+	k:longint;
 
 procedure input;
 var f:text;
@@ -14,36 +13,29 @@ begin
 	close(f);
 end;
 
-procedure main;
-var i,j:longint;
-	tmp:char;
+function maxpos(i,x:longint):longint;
+var j,maxnum:longint;
 begin
-	amax:=a[1];
-	amax2:='0';
-	n:=length(a);
-	for i:=2 to k+1 do
-		if a[i] > amax then
-		begin
-			amax2:=amax;
-			amax:=a[i];
-		end;
-	s:=s+amax;
-	amax:='0';
-	for j:=2 to n-k do
-	//for i:=j to k+j do
+	maxnum:=ord(a[i]);
+	maxpos:=i;
+	for j:=i+1 to x do if ord(a[j]) > maxnum then
 	begin
-		if a[k+j] >= amax then
-		begin
-			amax:=a[i];
-			if amax > amax2 then
-			begin
-				tmp:=amax;
-				amax:=amax2;
-				amax2:=tmp;
-			end;
-		end;
-		s:=s+amax;
-		amax:='0';
+		maxnum:=ord(a[j]);
+		maxpos:=j;
+	end;
+end;
+
+procedure main;
+var i,remain,count:longint;
+begin
+	remain:=k;
+	count:=1;
+	while remain > 0 do
+	begin
+		i:=maxpos(count,count+remain);
+		delete(a,count,i-count-1);
+		remain:=remain+count-i;
+		inc(count);
 	end;
 end;
 
@@ -52,7 +44,7 @@ var f:text;
 begin
 	assign(f,fo);
 	rewrite(f);
-	write(f,s);
+	write(f,a);
 	close(f);
 end;
 
