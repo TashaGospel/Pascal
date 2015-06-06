@@ -7,7 +7,6 @@ var l:array[1..maxn] of longint;
 Procedure Input;
 Var f:text;
 	i:longint;
-	sum:int64;
 Begin
 	maxsum:=0;
 	assign(f,fi);
@@ -15,7 +14,6 @@ Begin
 	readln(f,n,k);
 	for i:=1 to n do readln(f,l[i]);
 	close(f);
-	sum:=0;
 	for i:=1 to n do if lmax < l[i] then lmax:= l[i];
 End;
 

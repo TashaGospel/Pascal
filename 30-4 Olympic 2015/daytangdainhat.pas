@@ -42,7 +42,7 @@ var i:longint;
 begin
 	i:=n;
 	repeat
-	if l[i-1] = l[i] then dec(i)
+	if l[i-1] = l[i] then i:=i-1;
 	else 
 	begin
 		c[i]:=true;
