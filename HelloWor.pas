@@ -1,4 +1,15 @@
-Begin
-	writeln('Hello World!');
-	writeln('This is 22:22 14/6/2015. Testing GitHub on new Ubuntu!');
-End.
+procedure input;
+var
+begin
+	assign(f,fi);
+	reset(f);
+	readln(f,n);
+end;
+
+procedure main(i:longint);
+var
+begin
+	i:=i+1;
+	
+end;
+

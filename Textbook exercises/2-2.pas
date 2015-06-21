@@ -18,10 +18,9 @@ end;
 function isprime(c:longint):boolean;
 var i:longint;
 begin
+	if c <= 1 then exit(false);
 	i:=1;
-	if c = 1 then exit(false);
-	if c = 2 then exit(true);
-	while i < sqrt(c) do
+	while i < trunc(sqrt(c)) do
 	begin
 		inc(i);
 		if c mod i = 0 then exit(false);
