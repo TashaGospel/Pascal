@@ -1,15 +1,7 @@
-procedure input;
-var
-begin
-	assign(f,fi);
-	reset(f);
-	readln(f,n);
-end;
+type u = set of byte;
+var a:array[1..100] of u;
 
-procedure main(i:longint);
-var
 begin
-	i:=i+1;
-	
-end;
-
+	a[1]:=[4,5];
+	write(a[1]);
+end.
