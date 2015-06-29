@@ -121,7 +121,3 @@ begin
 	main;
 	output;
 end.
-			
-
-
-
