@@ -10,8 +10,8 @@ end;
 procedure output;
 var i:longint;
 begin
-        for i:=1 to n do write(a[i]);
-        write(' ');
+	for i:=1 to n do write(a[i]);
+	write(' ');
 end;
 
 procedure main(i:longint);
