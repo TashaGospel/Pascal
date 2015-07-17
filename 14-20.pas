@@ -74,6 +74,3 @@ begin
 	main(1);
 	output;
 end.
-
-
-
