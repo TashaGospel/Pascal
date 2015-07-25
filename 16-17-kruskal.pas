@@ -4,9 +4,10 @@ const fi = '16-16.inp';
 type edge = record
 	u,v,w:longint;
 	end;
-var n,m,res,chosen:longint;
+var n,m,treeNum,res:longint;
 	a:array[1..maxn] of edge;
-	availEdge,availVertex:array[1..maxn] of boolean;
+	t:array[1..maxn] of longint; // tree
+	chosen:array[1..maxn] of boolean;
 
 procedure input;
 var f:text;
@@ -14,14 +15,18 @@ var f:text;
 begin
 	assign(f,fi);
 	reset(f);
-	read(f,n,m); //n vertices, m edges
-	for i:=1 to m do with a[i] do read(f,u,v,w);
+	read(f,n,m); // n vertices, m edges
+	for i:=1 to m do 
+	begin
+		with a[i] do read(f,u,v,w);
+		t[i]:=i;
+	end;
 	close(f);
-	fillchar(availEdge,sizeof(availEdge),true);
-	fillchar(availVertex,sizeof(availVertex),true);
-	availVertex[1]:=false;
+	treeNum:=n;
+	fillchar(chosen,sizeof(chosen),false);
 end;
 
+// sort edges in ascending weight
 procedure quicksort(c,d:longint);
 var i,j,mid:longint;
 	tmp:edge;
@@ -43,21 +48,26 @@ begin
 	if i < d then quicksort(i,d);
 end;
 
+// unite two trees
+procedure union(c,d:longint);
+var i:longint;
+begin
+	for i:=1 to n do if t[i] = d then t[i]:=c;
+	dec(treeNum);
+end;
+
 procedure main;
-var i,count:longint;
+var i:longint;
 begin
 	quicksort(1,m);
-	for count:=1 to n-1 do
-		for i:=1 to m do if availEdge[i] then with a[i] do
-			if availVertex[u] xor availVertex[v] then
-			begin
-				inc(chosen);
-				availVertex[u]:=false;
-				availVertex[v]:=false;
-				availEdge[i]:=false;
-				res:=res+w;
-				break;
-			end;
+	// unite two sides of an edge, until treeNum = 1
+	for i:=1 to m do if treeNum = 1 then break
+	else with a[i] do if t[u] <> t[v] then
+	begin
+		union(t[u],t[v]);
+		res:=res+w;
+		chosen[i]:=true;
+	end;
 end;
 
 procedure output;
@@ -66,10 +76,10 @@ var f:text;
 begin
 	assign(f,fo);
 	rewrite(f);
-	if chosen = n-1 then
+	if treeNum = 1 then
 	begin
 		writeln(f,res);
-		for i:=1 to m do if not availEdge[i] then with a[i] do writeln(f,u,' ',v,' ',w);
+		for i:=1 to m do if chosen[i] then with a[i] do writeln(f,u,' ',v,' ',w);
 	end
 	else write(f,-1);
 	close(f);

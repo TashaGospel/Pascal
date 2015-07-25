@@ -83,7 +83,7 @@ procedure main;
 var t,i:longint;
 begin
 	t:=a[1].x;
-	res:=a[1].y;
+	res:=t+a[1].y;
 	for i:=2 to n do
 	begin
 		t:=t+a[i].x;

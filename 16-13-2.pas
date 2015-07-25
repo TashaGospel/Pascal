@@ -15,12 +15,19 @@ begin
 	for i:=1 to m do
 	begin
 		read(f,d1,d2);
-		if t[d1]=0 then t[d1]:=d1;
-		if t[d1] <> t[d2] then
+		if (t[d1]=0) and (t[d2]=0) then
 		begin
 			inc(d);
-			t[d2]:=t[d1];
-		end;		
+			t[d1]:=d1;
+			t[d2]:=d1;
+		end
+		else if (t[d1] <> 0) and (t[d2]=0) then begin t[d2]:=t[d1]; inc(d); end;
+		else if (t[d1] = 0) and (t[d2] <> 0) then begin t[d1]:=t[d2]; inc(d); end;
+		else if (t[d1] <> t[d2]) then
+		begin
+			tmp:=t[d2];
+			for j:=1 to n do if t[j] = tmp then begin t[j]:=t[d1]; inc(d); end;
+		end;
 	end;
 	close(f);
 end;
