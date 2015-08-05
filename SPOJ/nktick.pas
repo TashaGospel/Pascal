@@ -3,7 +3,7 @@ const fi = 'nktick.inp';
 	  fo = 'nktick.out';
 	  maxn = 60002;
 var n:longint;
-	a,b,res:array[-1..maxn] of longint;
+	a,b,res:array[0..maxn] of longint;
 
 procedure input;
 var f:text;
