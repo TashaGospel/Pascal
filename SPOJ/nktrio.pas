@@ -4,6 +4,7 @@ const fi = 'nktrio.inp';
 
 var n:longint;
 	a:array[1..maxn,1..maxn] of longint;
+	t:array[1..maxn] of longint;
 
 procedure input;
 var f:text;
@@ -27,23 +28,23 @@ begin
 	halt;
 end;
 
-{ we can do this because it's only 3 steps }
-procedure visit(c, num, start, prev:longint);
+procedure DFS(c:longint);
 var i:longint;
 begin
-	if num <= 2 then
-	begin
-		for i:=1 to n do 
-			if (a[c,i] = 1) and (i <> prev) then visit(i, num + 1, start, c)
-	end
-	else
-		if (a[c,start] = 1) then output(start, prev, c);
+	for i:=1 to n do 
+	if (a[c,i] = 1) and (t[i] = 0) then
+		if a[i,t[c]] = 1 then output(t[c],c,i)
+		else 
+		begin
+			t[i]:=c;
+			DFS(i);
+		end;
 end;
 
 procedure main;
 var i:longint;
 begin
-	for i:=1 to n do visit(i,1,i,0);
+	for i:=1 to n do if t[i] = 0 then DFS(i);
 end;
 
 begin
