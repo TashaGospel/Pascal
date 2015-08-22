@@ -15,10 +15,11 @@ begin
 end;
 
 procedure main;
-var i:longint;
+var i,j:longint;
 begin
-	a[0]:=0; a[1]:=0; a[2]:=1;
-	for i:=3 to n do a[i]:=a[i-1]*(i-1);
+	a[1]:=1;
+	for i:=2 to n do
+		for j:=1 to i-1 do a[i]:=a[i]+a[j]*a[i-j];
 end;
 			
 procedure output;
