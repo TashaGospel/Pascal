@@ -22,7 +22,7 @@ var i,j:longint;
 begin
     b[0]:=true;
     for i:=1 to n do
-        for j:=maxint downto 1 do if (not b[j]) and (b[j-a[i]]) then
+        for j:=maxint downto a[i] do if (not b[j]) and (b[j-a[i]]) then
         begin
             b[j]:=true;
             inc(res);
