@@ -40,11 +40,6 @@ begin
             end;}
         end;
 
-    for i:=1 to n do
-    begin
-        for j:=1 to s do write(b[i,j],' ');
-        writeln;
-    end;
 end;
 
 function path(i,j:longint):string;
