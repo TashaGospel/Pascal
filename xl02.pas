@@ -35,6 +35,7 @@ begin
 		a[k]:=tmp;
 		inc(k);
 	end;
+    dec(k);
 end;
 
 procedure quicksort1(d,c:longint);

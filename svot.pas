@@ -30,7 +30,7 @@ var i,j,k,tmp:longint;
 begin
     for i:=1 to subjects do
         for j:=1 to days do
-            for k:=1 to j do
+            for k:=0 to j do
             begin
                 tmp:=b[i-1,j-k] + a[i,k]; 
                 if b[i,j] < tmp then 

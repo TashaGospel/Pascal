@@ -40,22 +40,22 @@ end;
 procedure parse;
 var i,min,minpos:longint;
 begin
-        while avail[v] do
-        begin
-	//find min of available, make it fixed
-	min:=maxlongint;
-	for i:=1 to n do
-		if (avail[i]) and (d[i] < min) then
-		begin
-			min:=d[i];
-			minpos:=i;
-		end;
-	if (min = maxlongint) {no path} or (minpos = v) {shortest path found} then exit;
-	avail[minpos]:=false;
-	//relax edges that start with minpos
-	for i:=1 to n do
-		if e[i].x = minpos then relax(e[i]);
-        end;
+    while avail[v] do
+    begin
+        //find min of available, make it fixed
+        min:=maxlongint;
+        for i:=1 to n do
+            if (avail[i]) and (d[i] < min) then
+            begin
+                min:=d[i];
+                minpos:=i;
+            end;
+        if (min = maxlongint) {no path} or (minpos = v) {shortest path found} then exit;
+        avail[minpos]:=false;
+        //relax edges that start with minpos
+        for i:=1 to n do
+            if e[i].x = minpos then relax(e[i]);
+    end;
 end;
 
 function path(i:longint):string;
