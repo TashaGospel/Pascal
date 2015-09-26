@@ -29,7 +29,6 @@ begin
 	for i:=1 to n do if (a[c,i]) and (not b[i]) then main(i);
 end;
 
-
 procedure output;
 var f:text;
 	i:longint;
