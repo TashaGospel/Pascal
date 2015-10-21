@@ -32,7 +32,7 @@ var i,minPos,minVal:longint;
 begin
     minVal:=maxlongint;
     for i:=0 to n do if (not b[i]) and (d[i] < minVal) then
-    begin 
+    begin
         minVal:=d[i];
         minPos:=i;
     end;

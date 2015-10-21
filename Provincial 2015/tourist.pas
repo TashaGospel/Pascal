@@ -1,11 +1,12 @@
+uses math;
 const fi = 'tourist.inp';
       fo = 'tourist.out';
-      maxn = 102;
+      maxn = 21;
+      maxSize = 1 shl maxn - 1;
 
-var n, res:longint;
+var n, size, res:longint;
     a:array[0..maxn,0..maxn] of longint;
-    b,path:array[0..maxn] of longint;
-    chosen:array[0..maxn] of boolean;
+    b:array[0..maxn,0..maxSize] of longint;
 
 procedure input;
 var f:text;
@@ -14,48 +15,65 @@ begin
     assign(f,fi);
     reset(f);
     read(f,n);
-    for i:=1 to n do 
+    for i:=1 to n do
         for j:=1 to n do read(f,a[i,j]);
     close(f);
+    size:= 1 shl n - 1;
+end;
+
+function getBit(state:longint; bit:byte):byte;
+begin
+    exit(state shr bit and 1);
+end;
+
+function bitOff(state:longint; bit:byte):longint;
+begin
+    exit(state and not (1 shl bit));
+end;
+
+procedure getMin(state:longint);
+var i, j, count, preState:longint;
+    loc:array[1..maxn] of longint;
+begin
+    count:=0;
+    for i:=1 to n do if getBit(state, i-1) = 1 then
+    begin
+        inc(count);
+        loc[count]:=i;
+    end;
+
+    for i:=1 to count do
+    begin
+        preState:= bitOff(state,loc[i] - 1);
+        for j:=1 to count do if i <> j then
+            b[loc[i], state]:= min(b[loc[i], state], b[loc[j], preState] + a[loc[j],loc[i]]);
+    end;
+end;
+
+procedure main;
+var i,state:longint;
+begin
+    for i:=1 to n do
+        for state:=0 to size do b[i,state]:=maxlongint div 2;
+    b[1,1]:=0;
+
+    for state:=0 to size do getMin(state);
+    
     res:=maxlongint;
-end;
-
-procedure check(c:longint);
-begin
-    if c < res then
-    begin
-        res:=c;
-        path:=b;
-    end;
-end;
-
-procedure main(c, count, curSum:longint);
-var i:longint;
-begin
-    b[count]:=c;
-    if count = n then check(curSum + a[c,1])
-    else
-    begin
-        chosen[c]:=true;
-        for i:=2 to n do if not chosen[i] then main(i,count + 1, curSum + a[c,i]);
-        chosen[c]:=false;
-    end;
+    for i:=1 to n do res:=min(res, b[i, size] + a[i,1]);
 end;
 
 procedure output;
 var f:text;
-    i:longint;
 begin
     assign(f,fo);
     rewrite(f);
-    writeln(f,res);
-    for i:=1 to n do write(f, path[i], ' ');
-    write(f,1);
+    write(f,res);
     close(f);
 end;
 
 begin
     input;
-    main(1,1,0);
+    main;
     output;
 end.

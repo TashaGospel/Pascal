@@ -1,0 +1,8 @@
+7
+PBBCEFATZ->delete(9)->
+PBBCEFATZ->delete(8)->
+PBBCEFATZ->insert(4,B)->
+PBBCEFATZ->insert(4,A)->
+PBBCEFATZ->insert(4,D)->
+PBBCEFATZ->replace(2,A)->
+PBBCEFATZ->replace(1,Q)->
