@@ -50,7 +50,8 @@ begin
                 min:=d[i];
                 minpos:=i;
             end;
-        if (min = maxlongint) {no path} or (minpos = v) {shortest path found} then exit;
+        if (min = maxlongint) {no path} or (minpos = v) {shortest path found} then
+            exit;
         avail[minpos]:=false;
         //relax edges that start with minpos
         for i:=1 to n do

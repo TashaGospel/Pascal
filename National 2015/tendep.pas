@@ -2,10 +2,27 @@ uses math;
 const fi = 'tendep.inp';
       fo = 'tendep.out';
 
-function main(countA,countB,maxA,maxB):longint;
-var
+procedure swapVal(var a,b:longint);
+var tmp:longint;
 begin
-    if 
+    tmp:=a;
+    a:=b;
+    b:=tmp;
+end;
+
+function main(countA,countB,maxA,maxB:longint):longint;
+begin
+    if countA > countB then
+    begin
+        swapVal(countA,countB);
+        swapVal(maxA,maxB);
+    end;
+
+    if maxA = 0 then exit(min(countB,maxB));
+    if maxB = 0 then exit(min(countA,maxA));
+
+    if (countB div (countA + 1)) < maxB then exit(countA + countB)
+    else exit(maxB * (countA + 1) + countA)
 end;
 
 procedure parseFile;
