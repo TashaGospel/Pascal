@@ -18,24 +18,24 @@ begin
     close(f);
 end;
 
-function sumRect(i,j,x,y:longint):longint;
-begin
-    if (i > x) or (j > y) then exit(0);
-    exit(s[x,y] - s[x,j-1] - s[i-1,y] + s[i-1,j-1]);
-end;
 
 procedure main;
-var i,j,x,y:longint;
+var i,j,curSum,k:longint;
 begin
     for i:=1 to n do
-        for j:=1 to m do s[i,j]:=s[i-1,j] + s[i,j-1] - s[i-1,j-1] + a[i,j];
+        for j:=1 to m do s[i,j]:=s[i,j-1] + a[i,j];
 
-    for i:=1 to n do
-        for j:=1 to m do
-            for x:=i+1 to n do
-                for y:=j+1 to m do
-                    res:=max(res,sumRect(i,j,x,y) - sumRect(i+1,j+1,x-1,y-1));
-
+    for i:=1 to m do
+        for j:=i+1 to m do
+        begin
+            curSum:=s[1,j] - s[1,i-1];
+            for k:=2 to n do
+            begin
+                res:=max(res,curSum + s[k,j] - s[k,i-1]);
+                curSum:=curSum + a[k,i] + a[k,j];
+                if curSum < 0 then curSum:=s[k,j] - s[k,i-1];
+            end;
+        end;
 end;
 
 procedure output;

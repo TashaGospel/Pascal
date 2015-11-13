@@ -18,7 +18,7 @@ end;
 procedure main;
 var i,j:longint;
 begin
-    for i:=2 to n do 
+    for i:=2 to n do
     begin
         fillchar(chosen,sizeof(chosen),false);
         for j:=1 to i div 2 do chosen[a[i - j]]:=true;
