@@ -3,15 +3,15 @@ const fi = 'convexhull.inp';
       maxn = 100001;
 
 type point = record
-    x,y:longint;
-    ctg:real;
+    x,y,ctg:real;
     end;
 
     arr = array[1..maxn] of point;
 
-var n,bCount,stackCount,s,offsetX,offsetY:longint;
+var n,bCount,stackCount:longint;
+    s,offsetX,offsetY:real;
     a,b,stack:array[1..maxn] of point;
-    
+
 procedure input;
 var f:text;
     i:longint;
@@ -117,8 +117,8 @@ begin
 
     //for i:=1 to stackCount do writeln(stack[i].x+offsetX,' ',stack[i].y+offsetY);
 
-    stack[stackCount+1]:=stack[1];
-    for i:=1 to n do s:=s + (stack[i+1].x - stack[i].x) * (stack[i+1].y + stack[i].y);
+    //stack[stackCount+1]:=stack[1];
+    //for i:=1 to n do s:=s + (stack[i+1].x - stack[i].x) * (stack[i+1].y + stack[i].y);
 end;
 
 procedure output;
@@ -127,9 +127,10 @@ var f:text;
 begin
     assign(f,fo);
     rewrite(f);
-    //writeln(f,stackCount);
-    writeln(f,abs(s) / 2:0:1);
-    //for i:=1 to stackCount do writeln(f,stack[i].x+offsetX,' ',stack[i].y+offsetY);
+    writeln(f,stackCount);
+    //writeln(f,(abs(s) / 2) :0:1);
+    for i:=1 to stackCount do
+        writeln(f,stack[i].x+offsetX:0:3,' ',stack[i].y+offsetY:0:3);
     close(f);
 end;
 
