@@ -62,7 +62,6 @@ begin
 	close(f)
 end;
 
-
 begin
 	input;
 	floyd;
