@@ -51,7 +51,8 @@ begin
     begin
         b[i]:=a[i].p;
         for j:=i-1 downto 1 do 
-            if (a[i].t - a[j].t >= abs(a[i].c - a[j].c)) and (b[j] + a[i].p > b[i]) then
+            if (a[i].t - a[j].t >= abs(a[i].c - a[j].c))
+            and (b[j] + a[i].p > b[i]) then
                 b[i]:=b[j] + a[i].p;
         res:=max(res,b[i]);
     end;
