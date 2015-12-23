@@ -43,7 +43,6 @@ begin
     if i < d then quicksort(i,d);
 end;
 
-
 function min(c,d:qword):qword;
 begin
     if c <= d then exit(c) else exit(d);
