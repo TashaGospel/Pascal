@@ -7,7 +7,7 @@ type
         x,y:longint;
         next:thingPtr;
     end;
-      
+
 var list1,list2,res:thingPtr;
 
 procedure insertOrdered(x,y:longint; var first:thingPtr);
@@ -37,12 +37,12 @@ begin
     for i:=1 to n do
     begin
         read(f,d1,d2);
-        insertOrdered(d1,d2,list1);
+        insertOrdered(d2,d1,list1);
     end;
     for i:=1 to m do
     begin
         read(f,d1,d2);
-        insertOrdered(d1,d2,list2);
+        insertOrdered(d2,d1,list2);
     end;
     close(f);
 end;
@@ -53,11 +53,22 @@ begin
     p1:=list1;
     p2:=list2;
     while (p1 <> nil) and (p2 <> nil) do
-    begin
-        insertOrdered(p1^.x,p1^.y + p2^.y,res);
-        p1:=p1^.next;
-        p2:=p2^.next;
-    end;
+        if p1^.x < p2^.x then
+        begin
+            insertOrdered(p1^.x,p1^.x,res);
+            p1:=p1^.next;
+        end
+        else if p1^.x > p2^.x then
+        begin
+            insertOrdered(p2^.x,p2^.x,res);
+            p2:=p2^.next;
+        end
+        else
+        begin
+            if p1^.y + p2^.y <> 0 then insertOrdered(p1^.x,p1^.y+p2^.y,res);
+            p1:=p1^.next;
+            p2:=p2^.next;
+        end;
     if p1 = nil then p1:=p2;
     while p1 <> nil do
     begin
@@ -75,7 +86,7 @@ begin
     p:=res;
     while p <> nil do
     begin
-        write(f,p^.y,' ');
+        writeln(f,p^.x,' ',p^.y);
         p:=p^.next;
     end;
     close(f);

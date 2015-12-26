@@ -61,6 +61,38 @@ begin
     exit(node);
 end;
 
+procedure deleteAtFront;
+var p:thingPtr;
+begin
+    if first = nil then exit;
+    p:=first;
+    first:=p^.next;
+    dispose(p);
+end;
+
+procedure deleteAfterPointer(node:thingPtr);
+var p:thingPtr;
+begin
+    if node^.next = nil then exit;
+    p:=node^.next;
+    node^.next:=p^.next;
+    dispose(p);
+end;
+
+procedure deleteItem(x:longint);
+var p,before:thingPtr;
+begin
+    p:=first;
+    while (p <> nil) and (p^.x < x) do
+    begin
+        before:=p;
+        p:=p^.next;
+    end;
+    if (p <> nil) and (p^.x = x) then
+        if p = first then deleteAtFront
+        else deleteAfterPointer(before);
+end;
+
 procedure main;
 var i,res:longint;
     p:thingPtr;
