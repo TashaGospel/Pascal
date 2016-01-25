@@ -1,13 +1,13 @@
 const fi = 'dijkstra.inp';
-	  fo = 'dijkstra.out';
-	  maxn = 1000;
+      fo = 'dijkstra.out';
+      maxn = 1000;
 type edge = record
 	x,y,l:longint;
 	end;
 var e:array[1..maxn] of edge;
 	d,trace:array[1..maxn] of longint;
 	avail:array[1..maxn] of boolean;
-	m,n,u,v:longint; //m:point, n:edge
+	m, n, u, v:longint; // m:point, n:edge
 
 procedure input;
 var f:text;
