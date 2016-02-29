@@ -89,8 +89,9 @@ var n,m,i:longint;
 begin
     assign(f,fi);
     rewrite(f);
-    n:=random(50000) + 3;
-    m:=random(100000) + 3;
+    randomize;
+    n:=50000;
+    m:=100000;
     writeln(f,n,' ',m);
     for i:=1 to m do writeln(f,random(n) + 1,' ',
             random(n) + 1,' ', random(1000000000) + 1);

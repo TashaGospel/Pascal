@@ -1,6 +1,6 @@
 uses math;
-const fi = 'stock.inp';
-      fo = 'stock.out';
+const fi = 'stoc.inp';
+      fo = 'stoc.out';
       maxn = 201;
 
 var n, m:longint;
